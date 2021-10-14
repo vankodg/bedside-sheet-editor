@@ -1,32 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SettingContainer from './components/SettingContainer';
 import SvgContainer from './components/SvgContainer';
-// @ts-ignore
-import downloadSvg from 'svg-crowbar';
 
-type MyProps = { numOfRows: number };
-type MyState = { numOfRows: number };
+const saveSvgAsPng = require('save-svg-as-png');
 
-export default class App extends React.Component<MyProps, MyState> {
-  constructor(props: MyProps) {
-    super(props);
-    this.state = {
-      numOfRows: 1,
-    };
-  }
+export default function App() {
+  const [numOfRows, setNumOfRows] = useState(1);
+  const [isFirstCol, setIsFirstCol] = useState(false);
 
-  render() {
-    let svgContainer = <SvgContainer numOfRows={this.state.numOfRows} />;
-    return (
-      <>
-        <SettingContainer
-          setNumOfRows={(x: number) =>
-            this.setState({ ...this.state, numOfRows: x })
-          }
-          download={() => downloadSvg(document.querySelector('svg'))}
-        />
-        {svgContainer}
-      </>
+  const handleClick = () => {
+    saveSvgAsPng.saveSvgAsPng(
+      document.getElementById('svg-bedsheet'),
+      'bedsheet.png',
     );
-  }
+  };
+
+  return (
+    <>
+      <SettingContainer
+        numOfRows={numOfRows}
+        setNumOfRows={setNumOfRows}
+        isFirstCol={isFirstCol}
+        setIsFirstCol={setIsFirstCol}
+        download={handleClick}
+      />
+      <SvgContainer numOfRows={numOfRows} />
+    </>
+  );
 }

@@ -1,25 +1,28 @@
 import React from 'react';
-import Cell from './Cell';
+import Row from './svg/Row';
 
 type MyProps = {
   numOfRows: number;
 };
 
 export default function SvgContainer(props: MyProps) {
+  let rowHeight = 20;
+  let rowWidth = 960;
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <svg
+      id={'svg-bedsheet'}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1024 1024"
+    >
       {[...Array(props.numOfRows)].map((x, rowIdx) => (
-        <g key={rowIdx}>
-          {[...Array(24)].map((y, colIdx) => (
-            <Cell
-              key={rowIdx + '-' + colIdx}
-              x={0 + colIdx * 32}
-              y={0 + rowIdx * 16}
-              width="32"
-              height="1em"
-            />
-          ))}
-        </g>
+        <Row
+          key={rowIdx}
+          numOfCells={24}
+          x={0}
+          y={0 + rowIdx * rowHeight}
+          height={rowHeight}
+          width={rowWidth}
+        />
       ))}
     </svg>
   );
