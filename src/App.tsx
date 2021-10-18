@@ -24,7 +24,7 @@ export default function App() {
         setIsFirstCol={setIsFirstCol}
         download={handleClick}
       />
-      <SvgContainer numOfRows={numOfRows} />
+      <SvgContainer numOfRows={numOfRows} isFirstCol={isFirstCol} />
     </>
   );
 }

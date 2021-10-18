@@ -11,7 +11,7 @@ type MyProps = {
 };
 
 export default function Column(props: MyProps) {
-  let cellHeight = props.width / props.numOfCells;
+  let cellHeight = props.height / props.numOfCells;
   return (
     <svg x={props.x} y={props.y}>
       <g>
