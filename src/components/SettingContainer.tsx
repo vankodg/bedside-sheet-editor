@@ -1,3 +1,5 @@
+import { Button, Checkbox, Col, Grid, NumberInput } from '@mantine/core';
+
 type MyProps = {
   numOfRows: number;
   setNumOfRows: (x: number) => void;
@@ -8,37 +10,32 @@ type MyProps = {
 
 export default function SettingContainer(props: MyProps) {
   return (
-    <div>
-      <div>
-        <label htmlFor={'numOfRows'}>Number of rows:</label>
-        <input
+    <Grid justify="space-between" align="center">
+      <Col span={4}>
+        <NumberInput
+          label="Number of rows"
           id={'numOfRows'}
           min={0}
           max={100} /* just to be safe */
           type={'number'}
           value={props.numOfRows}
-          onChange={(event) => {
-            let value = event.target.valueAsNumber;
+          onChange={(value) => {
             if (Number.isInteger(value) && 0 <= value && value <= 100) {
               props.setNumOfRows(value);
             }
           }}
-        ></input>
-      </div>
-      <div>
-        <input
-          type={'checkbox'}
-          //value={props.isFirstCol}
-          id={'firstColumn'}
-          onClick={() => {
-            props.setIsFirstCol(!props.isFirstCol);
-          }}
-        ></input>
-        <label htmlFor={'firstColumn'}>First Column?</label>
-      </div>
-      <div>
-        <button onClick={(event) => props.download()}>Download</button>
-      </div>
-    </div>
+        />
+      </Col>
+      <Col span={4}>
+        <Checkbox
+          checked={props.isFirstCol}
+          onChange={(event) => props.setIsFirstCol(event.currentTarget.checked)}
+          label="First Column?"
+        />
+      </Col>
+      <Col span={4}>
+        <Button onClick={() => props.download()}>Download</Button>
+      </Col>
+    </Grid>
   );
 }

@@ -15,7 +15,7 @@ export default function SvgContainer(props: MyProps) {
     <svg
       id={'svg-bedsheet'}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1024 1024"
+      viewBox="0 0 1024 512"
     >
       {props.isFirstCol && (
         <Column

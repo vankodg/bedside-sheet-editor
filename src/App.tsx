@@ -1,3 +1,4 @@
+import { Container } from '@mantine/core';
 import React, { useState } from 'react';
 import SettingContainer from './components/SettingContainer';
 import SvgContainer from './components/SvgContainer';
@@ -16,7 +17,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <Container size="xl">
       <SettingContainer
         numOfRows={numOfRows}
         setNumOfRows={setNumOfRows}
@@ -25,6 +26,6 @@ export default function App() {
         download={handleClick}
       />
       <SvgContainer numOfRows={numOfRows} isFirstCol={isFirstCol} />
-    </>
+    </Container>
   );
 }
