@@ -1,4 +1,3 @@
-import { SVGProps } from 'react';
 import Cell from './Cell';
 
 type MyProps = {
@@ -7,7 +6,7 @@ type MyProps = {
   y: number;
   width: number;
   height: number;
-  SVGProps?: SVGProps<SVGRectElement>;
+  firstColLabelList?: string[];
 };
 
 export default function Column(props: MyProps) {
@@ -22,7 +21,11 @@ export default function Column(props: MyProps) {
             y={rowIdx * cellHeight}
             width={props.width}
             height={cellHeight}
-            {...props.SVGProps}
+            label={
+              props.firstColLabelList
+                ? props.firstColLabelList[rowIdx]
+                : undefined
+            }
           />
         ))}
       </g>

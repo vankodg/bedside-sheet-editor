@@ -1,16 +1,28 @@
 import { Button, Checkbox, Col, Grid, NumberInput } from '@mantine/core';
+import InputList, { handlerType } from './settings/InputList';
 
 type MyProps = {
   numOfRows: number;
   setNumOfRows: (x: number) => void;
   isFirstCol: boolean;
   setIsFirstCol: (x: boolean) => void;
+  firstColLabelList: string[];
+  handlerFirstColLabelList: handlerType;
   download: () => void;
 };
 
 export default function SettingContainer(props: MyProps) {
   return (
-    <Grid justify="space-between" align="center">
+    <Grid
+      justify="space-between"
+      align="flex-start"
+      style={{
+        height: '50vh',
+        overflowY: 'scroll',
+        margin: 0,
+        marginBottom: 16,
+      }}
+    >
       <Col span={4}>
         <NumberInput
           label="Number of rows"
@@ -28,12 +40,18 @@ export default function SettingContainer(props: MyProps) {
       </Col>
       <Col span={4}>
         <Checkbox
+          mb="xs"
           checked={props.isFirstCol}
           onChange={(event) => props.setIsFirstCol(event.currentTarget.checked)}
           label="First Column?"
         />
+        <InputList
+          numOfRows={props.numOfRows}
+          firstColLabelList={props.firstColLabelList}
+          handlerFirstColLabelList={props.handlerFirstColLabelList}
+        />
       </Col>
-      <Col span={4}>
+      <Col span={2}>
         <Button onClick={() => props.download()}>Download</Button>
       </Col>
     </Grid>
