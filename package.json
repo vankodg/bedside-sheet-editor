@@ -2,6 +2,7 @@
   "name": "bedside-sheet-editor",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vankodg.github.io/bedside-sheet-editor",
   "dependencies": {
     "@mantine/core": "^3.0.5",
     "@mantine/hooks": "^3.0.5",
