@@ -51,6 +51,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/register": "^7.15.3",
+    "eslint": "^8.0.1",
     "eslint-plugin-react": "^7.26.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "2.4.1"
