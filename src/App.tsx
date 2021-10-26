@@ -1,15 +1,16 @@
 import { Container } from '@mantine/core';
-import { useListState } from '@mantine/hooks';
-import React, { useState } from 'react';
+import React from 'react';
 import SettingContainer from './components/SettingContainer';
 import SvgContainer from './components/SvgContainer';
+import { useLocalStorage } from './utils/myHooks';
 
 const saveSvgAsPng = require('save-svg-as-png');
 
 export default function App() {
-  const [numOfRows, setNumOfRows] = useState(1);
-  const [isFirstCol, setIsFirstCol] = useState(false);
-  const [firstColLabelList, handlerFirstColLabelList] = useListState<string>(
+  const [numOfRows, setNumOfRows] = useLocalStorage('numOfRows', 1);
+  const [isFirstCol, setIsFirstCol] = useLocalStorage('isFirstCol', false);
+  const [firstColLabelList, setFirstColLabelList] = useLocalStorage<string[]>(
+    'firstColLabelList',
     [],
   );
 
@@ -29,7 +30,7 @@ export default function App() {
         setIsFirstCol={setIsFirstCol}
         download={handleClick}
         firstColLabelList={firstColLabelList}
-        handlerFirstColLabelList={handlerFirstColLabelList}
+        setFirstColLabelList={setFirstColLabelList}
       />
       <SvgContainer
         numOfRows={numOfRows}

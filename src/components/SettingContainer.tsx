@@ -1,5 +1,5 @@
 import { Button, Checkbox, Col, Grid, NumberInput } from '@mantine/core';
-import InputList, { handlerType } from './settings/InputList';
+import InputList from './settings/InputList';
 
 type MyProps = {
   numOfRows: number;
@@ -7,7 +7,7 @@ type MyProps = {
   isFirstCol: boolean;
   setIsFirstCol: (x: boolean) => void;
   firstColLabelList: string[];
-  handlerFirstColLabelList: handlerType;
+  setFirstColLabelList: (x: string[]) => void;
   download: () => void;
 };
 
@@ -48,7 +48,7 @@ export default function SettingContainer(props: MyProps) {
         <InputList
           numOfRows={props.numOfRows}
           firstColLabelList={props.firstColLabelList}
-          handlerFirstColLabelList={props.handlerFirstColLabelList}
+          setFirstColLabelList={props.setFirstColLabelList}
         />
       </Col>
       <Col span={2}>
