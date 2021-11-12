@@ -8,7 +8,8 @@ type MyProps = {
   setIsFirstCol: (x: boolean) => void;
   firstColLabelList: string[];
   setFirstColLabelList: (x: string[]) => void;
-  download: () => void;
+  downloadPng: () => void;
+  downloadConfig: () => void;
 };
 
 export default function SettingContainer(props: MyProps) {
@@ -52,7 +53,15 @@ export default function SettingContainer(props: MyProps) {
         />
       </Col>
       <Col span={2}>
-        <Button onClick={() => props.download()}>Download</Button>
+        <Button onClick={() => props.downloadPng()}>Download PNG</Button>
+        <Button
+          onClick={(event: any): void => {
+            event.preventDefault();
+            props.downloadConfig();
+          }}
+        >
+          Download config
+        </Button>
       </Col>
     </Grid>
   );
