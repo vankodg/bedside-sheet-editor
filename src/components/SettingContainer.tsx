@@ -24,7 +24,7 @@ export default function SettingContainer(props: MyProps) {
         marginBottom: 16,
       }}
     >
-      <Col span={4}>
+      <Col span={5}>
         <NumberInput
           label="Number of rows"
           id={'numOfRows'}
@@ -39,7 +39,7 @@ export default function SettingContainer(props: MyProps) {
           }}
         />
       </Col>
-      <Col span={4}>
+      <Col span={5}>
         <Checkbox
           mb="xs"
           checked={props.isFirstCol}
@@ -53,8 +53,15 @@ export default function SettingContainer(props: MyProps) {
         />
       </Col>
       <Col span={2}>
-        <Button onClick={() => props.downloadPng()}>Download PNG</Button>
         <Button
+          style={{ marginLeft: 'auto ' }}
+          mb="xs"
+          onClick={() => props.downloadPng()}
+        >
+          Download PNG
+        </Button>
+        <Button
+          style={{ marginLeft: 'auto ' }}
           onClick={(event: any): void => {
             event.preventDefault();
             props.downloadConfig();

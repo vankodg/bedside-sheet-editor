@@ -24,19 +24,23 @@ export default function App() {
   };
 
   useEffect(() => {
-    dofileDownload.current!.click(); // Step 6
-    URL.revokeObjectURL(configDownloadUrl); // Step 7
-    setConfigDownloadUrl('');
+    if (configDownloadUrl !== '') {
+      dofileDownload.current!.click(); // Step 6
+      URL.revokeObjectURL(configDownloadUrl); // Step 7
+      setConfigDownloadUrl('');
+    }
   }, [configDownloadUrl]);
 
   const downloadConfig = () => {
-    console.log('valami');
-    let output = 'string\nstring\n';
+    let output = 'DATA_AREA_ROWS = ' + numOfRows + '\n';
+    output += 'DATA_AREA_COLUMNS = ' + 24 + '\n';
+    output += 'ROW_HEIGHT = ' + 16 + '\n';
+    output += 'COLUMN_WIDTH = ' + 900 / 24 + '\n';
+    output += 'INPUT_SECTION_OFFSET_X = ' + (isFirstCol ? 60 : 0) + '\n';
+    output += 'INPUT_SECTION_OFFSET_Y = ' + 0 + '\n';
     const blob = new Blob([output], { type: 'text/plain;charset=utf-8' }); // Step 3
     const url = URL.createObjectURL(blob); // Step 4
     setConfigDownloadUrl(url.toString());
-    console.log(blob);
-    console.log(url);
   };
 
   return (
@@ -52,7 +56,7 @@ export default function App() {
         setFirstColLabelList={setFirstColLabelList}
       />
       <a
-        style={{ display: 'hidden' }}
+        style={{ display: 'none' }}
         download={'config.py'}
         href={configDownloadUrl}
         ref={dofileDownload}
