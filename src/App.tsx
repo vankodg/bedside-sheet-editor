@@ -8,6 +8,7 @@ const saveSvgAsPng = require('save-svg-as-png');
 
 export default function App() {
   const [numOfRows, setNumOfRows] = useLocalStorage('numOfRows', 1);
+  const [isFirstRow, setIsFirstRow] = useLocalStorage('isFirstRow', false);
   const [isFirstCol, setIsFirstCol] = useLocalStorage('isFirstCol', false);
   const [firstColLabelList, setFirstColLabelList] = useLocalStorage<string[]>(
     'firstColLabelList',
@@ -37,7 +38,7 @@ export default function App() {
     output += 'ROW_HEIGHT = ' + 16 + '\n';
     output += 'COLUMN_WIDTH = ' + 900 / 24 + '\n';
     output += 'INPUT_SECTION_OFFSET_X = ' + (isFirstCol ? 60 : 0) + '\n';
-    output += 'INPUT_SECTION_OFFSET_Y = ' + 0 + '\n';
+    output += 'INPUT_SECTION_OFFSET_Y = ' + (isFirstRow ? 16 : 0) + '\n';
     const blob = new Blob([output], { type: 'text/plain;charset=utf-8' }); // Step 3
     const url = URL.createObjectURL(blob); // Step 4
     setConfigDownloadUrl(url.toString());
@@ -48,6 +49,8 @@ export default function App() {
       <SettingContainer
         numOfRows={numOfRows}
         setNumOfRows={setNumOfRows}
+        isFirstRow={isFirstRow}
+        setIsFirstRow={setIsFirstRow}
         isFirstCol={isFirstCol}
         setIsFirstCol={setIsFirstCol}
         downloadPng={downloadPng}
@@ -65,6 +68,7 @@ export default function App() {
       </a>
       <SvgContainer
         numOfRows={numOfRows}
+        isFirstRow={isFirstRow}
         isFirstCol={isFirstCol}
         firstColLabelList={firstColLabelList}
       />

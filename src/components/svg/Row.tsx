@@ -7,13 +7,15 @@ type MyProps = {
   y: number;
   width: number;
   height: number;
+  labelList?: string[];
+  isLabelsCentered?: boolean;
   SVGProps?: SVGProps<SVGRectElement>;
 };
 
 export default function Row(props: MyProps) {
   let cellWidth = props.width / props.numOfCells;
   return (
-    <svg x={props.x} y={props.y}>
+    <svg x={props.x} y={props.y} width={props.width} height={props.height}>
       <g>
         {[...Array(props.numOfCells)].map((_, colIdx) => (
           <Cell
@@ -22,6 +24,8 @@ export default function Row(props: MyProps) {
             y={0}
             width={cellWidth}
             height={props.height}
+            label={props.labelList ? props.labelList[colIdx] : undefined}
+            isLabelCentered={props.isLabelsCentered}
             {...props.SVGProps}
           />
         ))}

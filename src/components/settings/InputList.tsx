@@ -1,6 +1,7 @@
-import { Group, TextInput } from '@mantine/core';
+import { Group, TextInput, Text } from '@mantine/core';
 
 type InputListProps = {
+  isActive: boolean;
   numOfRows: number;
   firstColLabelList: string[];
   setFirstColLabelList: (x: string[]) => void;
@@ -9,16 +10,18 @@ type InputListProps = {
 export default function InputList(props: InputListProps) {
   return (
     <Group direction="column">
-      {[...Array(props.numOfRows)].map((x, rowIdx) => (
+      <Text>Labels in the first column</Text>
+      {[...Array(props.numOfRows)].map((_, rowIdx) => (
         <TextInput
           key={rowIdx}
-          placeholder={'Label of column ' + (rowIdx + 1)}
+          placeholder={'Label of row ' + (rowIdx + 1)}
           value={props.firstColLabelList[rowIdx] || ''}
           onChange={(event) => {
             let newArray = [...props.firstColLabelList];
             newArray[rowIdx] = event.currentTarget.value;
             props.setFirstColLabelList(newArray);
           }}
+          disabled={!props.isActive}
         />
       ))}
     </Group>
