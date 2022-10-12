@@ -5,14 +5,15 @@ import Row from './svg/Row';
 type MyProps = {
   numOfRows: number;
   isFirstRow: boolean;
+  isMidIndex: boolean;
   isFirstCol: boolean;
   firstColLabelList: string[];
 };
 
 export default function SvgContainer(props: MyProps) {
-  let rowHeight = 16;
-  let rowWidth = 900;
-  let firstColWidth = 60;
+  let rowHeight = 32;
+  let rowWidth = 1800;
+  let firstColWidth = 200;
   let svgWidth = rowWidth + (props.isFirstCol ? firstColWidth : 0);
   let svgHeight = ((props.isFirstRow ? 1 : 0) + props.numOfRows) * rowHeight;
   return (
@@ -68,14 +69,34 @@ export default function SvgContainer(props: MyProps) {
         />
       )}
       {[...Array(props.numOfRows)].map((x, rowIdx) => (
-        <Row
-          key={rowIdx}
-          numOfCells={24}
-          x={props.isFirstCol ? firstColWidth : 0}
-          y={((props.isFirstRow ? 1 : 0) + rowIdx) * rowHeight}
-          height={rowHeight}
-          width={rowWidth}
-        />
+        <>
+          <Row
+            key={rowIdx}
+            numOfCells={24}
+            x={props.isFirstCol ? firstColWidth : 0}
+            y={((props.isFirstRow ? 1 : 0) + rowIdx) * rowHeight}
+            height={rowHeight}
+            width={rowWidth}
+          />
+          {props.isMidIndex && props.firstColLabelList[rowIdx] && (
+            <text
+              x={
+                (props.isFirstCol ? Number(firstColWidth) : 0) +
+                Number(rowWidth / 2)
+              }
+              dx={(-rowWidth * 0.05) / 24}
+              y={((props.isFirstRow ? 1 : 0) + rowIdx) * rowHeight}
+              dy={rowHeight * 0.01}
+              dominantBaseline={'hanging'}
+              textAnchor={'end'}
+              style={{
+                font: 'normal ' + rowHeight * 0.4 + 'px sans-serif',
+              }}
+            >
+              {props.firstColLabelList[rowIdx].substring(0, 5)}
+            </text>
+          )}
+        </>
       ))}
     </svg>
   );

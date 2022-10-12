@@ -1,4 +1,12 @@
-import { Button, Checkbox, Col, Grid, NumberInput, Group } from '@mantine/core';
+import {
+  Button,
+  Checkbox,
+  Col,
+  Grid,
+  NumberInput,
+  Group,
+  Tooltip,
+} from '@mantine/core';
 import InputList from './settings/InputList';
 
 type MyProps = {
@@ -10,6 +18,8 @@ type MyProps = {
   setIsFirstCol: (x: boolean) => void;
   firstColLabelList: string[];
   setFirstColLabelList: (x: string[]) => void;
+  isMidIndex: boolean;
+  setIsMidIndex: (x: boolean) => void;
   downloadPng: () => void;
   downloadConfig: () => void;
 };
@@ -61,6 +71,21 @@ export default function SettingContainer(props: MyProps) {
             }
             label="First column"
           />
+          <Tooltip
+            label="Shows the first 5 characters of the column label in the middle column"
+            color="primary"
+            position="right"
+            withArrow
+          >
+            <Checkbox
+              mb="xs"
+              checked={props.isMidIndex}
+              onChange={(event) =>
+                props.setIsMidIndex(event.currentTarget.checked)
+              }
+              label="Mid-row indexes"
+            />
+          </Tooltip>
           <InputList
             isActive={props.isFirstCol}
             numOfRows={props.numOfRows}

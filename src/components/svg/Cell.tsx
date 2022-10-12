@@ -6,9 +6,10 @@ type MyProps = {
 } & SVGProps<SVGRectElement>;
 
 export default function Cell(props: MyProps) {
+  var { label, isLabelCentered, ...svgProps } = props;
   return (
     <>
-      <rect style={{ fill: 'white', stroke: 'black' }} {...props} />
+      <rect style={{ fill: 'white', stroke: 'black' }} {...svgProps} />
       {props.label && !props.isLabelCentered && (
         <text
           x={props.x}

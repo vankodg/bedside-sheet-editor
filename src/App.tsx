@@ -9,6 +9,7 @@ const saveSvgAsPng = require('save-svg-as-png');
 export default function App() {
   const [numOfRows, setNumOfRows] = useLocalStorage('numOfRows', 1);
   const [isFirstRow, setIsFirstRow] = useLocalStorage('isFirstRow', false);
+  const [isMidIndex, setIsMidIndex] = useLocalStorage('isMidIndex', false);
   const [isFirstCol, setIsFirstCol] = useLocalStorage('isFirstCol', false);
   const [firstColLabelList, setFirstColLabelList] = useLocalStorage<string[]>(
     'firstColLabelList',
@@ -53,6 +54,8 @@ export default function App() {
         setIsFirstRow={setIsFirstRow}
         isFirstCol={isFirstCol}
         setIsFirstCol={setIsFirstCol}
+        isMidIndex={isMidIndex}
+        setIsMidIndex={setIsMidIndex}
         downloadPng={downloadPng}
         downloadConfig={downloadConfig}
         firstColLabelList={firstColLabelList}
@@ -69,6 +72,7 @@ export default function App() {
       <SvgContainer
         numOfRows={numOfRows}
         isFirstRow={isFirstRow}
+        isMidIndex={isMidIndex}
         isFirstCol={isFirstCol}
         firstColLabelList={firstColLabelList}
       />

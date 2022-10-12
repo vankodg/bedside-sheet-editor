@@ -1,4 +1,3 @@
-import { SVGProps } from 'react';
 import Cell from './Cell';
 
 type MyProps = {
@@ -9,7 +8,6 @@ type MyProps = {
   height: number;
   labelList?: string[];
   isLabelsCentered?: boolean;
-  SVGProps?: SVGProps<SVGRectElement>;
 };
 
 export default function Row(props: MyProps) {
@@ -26,7 +24,6 @@ export default function Row(props: MyProps) {
             height={props.height}
             label={props.labelList ? props.labelList[colIdx] : undefined}
             isLabelCentered={props.isLabelsCentered}
-            {...props.SVGProps}
           />
         ))}
       </g>
