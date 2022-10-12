@@ -20,6 +20,8 @@ type MyProps = {
   setFirstColLabelList: (x: string[]) => void;
   isMidIndex: boolean;
   setIsMidIndex: (x: boolean) => void;
+  isEndIndex: boolean;
+  setIsEndIndex: (x: boolean) => void;
   downloadPng: () => void;
   downloadConfig: () => void;
 };
@@ -76,6 +78,7 @@ export default function SettingContainer(props: MyProps) {
             color="primary"
             position="right"
             withArrow
+            style={{ display: 'flex' }}
           >
             <Checkbox
               mb="xs"
@@ -84,6 +87,22 @@ export default function SettingContainer(props: MyProps) {
                 props.setIsMidIndex(event.currentTarget.checked)
               }
               label="Mid-row indexes"
+            />
+          </Tooltip>
+          <Tooltip
+            label="Shows the first 5 characters of the column label in the last column"
+            color="primary"
+            position="right"
+            withArrow
+            style={{ display: 'flex' }}
+          >
+            <Checkbox
+              mb="xs"
+              checked={props.isEndIndex}
+              onChange={(event) =>
+                props.setIsEndIndex(event.currentTarget.checked)
+              }
+              label="Row-end indexes"
             />
           </Tooltip>
           <InputList

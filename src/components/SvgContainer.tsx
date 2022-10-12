@@ -5,9 +5,10 @@ import Row from './svg/Row';
 type MyProps = {
   numOfRows: number;
   isFirstRow: boolean;
-  isMidIndex: boolean;
   isFirstCol: boolean;
   firstColLabelList: string[];
+  isMidIndex: boolean;
+  isEndIndex: boolean;
 };
 
 export default function SvgContainer(props: MyProps) {
@@ -83,6 +84,24 @@ export default function SvgContainer(props: MyProps) {
               x={
                 (props.isFirstCol ? Number(firstColWidth) : 0) +
                 Number(rowWidth / 2)
+              }
+              dx={(-rowWidth * 0.05) / 24}
+              y={((props.isFirstRow ? 1 : 0) + rowIdx) * rowHeight}
+              dy={rowHeight * 0.01}
+              dominantBaseline={'hanging'}
+              textAnchor={'end'}
+              style={{
+                font: 'normal ' + rowHeight * 0.4 + 'px sans-serif',
+              }}
+            >
+              {props.firstColLabelList[rowIdx].substring(0, 5)}
+            </text>
+          )}
+          {props.isEndIndex && props.firstColLabelList[rowIdx] && (
+            <text
+              x={
+                (props.isFirstCol ? Number(firstColWidth) : 0) +
+                Number(rowWidth)
               }
               dx={(-rowWidth * 0.05) / 24}
               y={((props.isFirstRow ? 1 : 0) + rowIdx) * rowHeight}
