@@ -9,7 +9,7 @@ type InputListProps = {
 
 export default function InputList(props: InputListProps) {
   return (
-    <Group direction="column">
+    <Group direction="column" style={{ alignItems: 'normal' }}>
       <Text>Labels in the first column</Text>
       {[...Array(props.numOfRows)].map((_, rowIdx) => (
         <TextInput

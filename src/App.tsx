@@ -7,7 +7,7 @@ import { useLocalStorage } from './utils/myHooks';
 const saveSvgAsPng = require('save-svg-as-png');
 
 export default function App() {
-  const [numOfRows, setNumOfRows] = useLocalStorage('numOfRows', 1);
+  const [numOfRows, setNumOfRows] = useLocalStorage('numOfRows', 6);
   const [isFirstRow, setIsFirstRow] = useLocalStorage('isFirstRow', false);
   const [isFirstCol, setIsFirstCol] = useLocalStorage('isFirstCol', false);
   const [isMidIndex, setIsMidIndex] = useLocalStorage('isMidIndex', false);

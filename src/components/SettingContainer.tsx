@@ -7,6 +7,7 @@ import {
   Group,
   Tooltip,
 } from '@mantine/core';
+import GroupLabelList from './settings/GroupLabelList';
 import InputList from './settings/InputList';
 
 type MyProps = {
@@ -32,6 +33,7 @@ export default function SettingContainer(props: MyProps) {
       <Grid
         justify="space-between"
         align="flex-start"
+        grow
         style={{
           height: '50vh',
           width: 'calc(100% - 180px)',
@@ -40,7 +42,7 @@ export default function SettingContainer(props: MyProps) {
           marginBottom: 16,
         }}
       >
-        <Col span={5}>
+        <Col span={3}>
           <NumberInput
             label="Number of rows"
             id={'numOfRows'}
@@ -64,7 +66,7 @@ export default function SettingContainer(props: MyProps) {
             label="First row with hours"
           />
         </Col>
-        <Col span={5}>
+        <Col span={3}>
           <Checkbox
             mb="xs"
             checked={props.isFirstCol}
@@ -112,7 +114,9 @@ export default function SettingContainer(props: MyProps) {
             setFirstColLabelList={props.setFirstColLabelList}
           />
         </Col>
-        <Col span={2}></Col>
+        <Col span={5}>
+          <GroupLabelList isActive={props.isFirstCol} />
+        </Col>
       </Grid>
       <Group direction="column" position="center">
         <Button onClick={() => props.downloadPng()}>Download PNG</Button>
