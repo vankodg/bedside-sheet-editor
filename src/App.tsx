@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import SettingContainer from './components/SettingContainer';
 import SvgContainer from './components/SvgContainer';
 import { useLocalStorage } from './utils/myHooks';
+import { GroupLabel } from './utils/types';
 
 const saveSvgAsPng = require('save-svg-as-png');
 
@@ -10,11 +11,18 @@ export default function App() {
   const [numOfRows, setNumOfRows] = useLocalStorage('numOfRows', 6);
   const [isFirstRow, setIsFirstRow] = useLocalStorage('isFirstRow', false);
   const [isFirstCol, setIsFirstCol] = useLocalStorage('isFirstCol', false);
-  const [isMidIndex, setIsMidIndex] = useLocalStorage('isMidIndex', false);
-  const [isEndIndex, setIsEndIndex] = useLocalStorage('isEndIndex', false);
   const [firstColLabelList, setFirstColLabelList] = useLocalStorage<string[]>(
     'firstColLabelList',
     [],
+  );
+  const [isMidIndex, setIsMidIndex] = useLocalStorage('isMidIndex', false);
+  const [isEndIndex, setIsEndIndex] = useLocalStorage('isEndIndex', false);
+  const [groupLabelList, setGroupLabelList] = useLocalStorage<GroupLabel[]>(
+    'groupLabelList',
+    [
+      { label: '', startRow: 1, endRow: 3 },
+      { label: '', startRow: 4, endRow: 6 },
+    ],
   );
   const [configDownloadUrl, setConfigDownloadUrl] = useState('');
   var dofileDownload = useRef<HTMLAnchorElement>(null);
@@ -61,6 +69,8 @@ export default function App() {
         setIsMidIndex={setIsMidIndex}
         isEndIndex={isEndIndex}
         setIsEndIndex={setIsEndIndex}
+        groupLabelList={groupLabelList}
+        setGroupLabelList={setGroupLabelList}
         downloadPng={downloadPng}
         downloadConfig={downloadConfig}
       />
@@ -79,6 +89,7 @@ export default function App() {
         firstColLabelList={firstColLabelList}
         isMidIndex={isMidIndex}
         isEndIndex={isEndIndex}
+        groupLabelList={groupLabelList}
       />
     </Container>
   );

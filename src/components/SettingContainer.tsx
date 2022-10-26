@@ -7,6 +7,7 @@ import {
   Group,
   Tooltip,
 } from '@mantine/core';
+import { GroupLabel } from '../utils/types';
 import GroupLabelList from './settings/GroupLabelList';
 import InputList from './settings/InputList';
 
@@ -23,6 +24,8 @@ type MyProps = {
   setIsMidIndex: (x: boolean) => void;
   isEndIndex: boolean;
   setIsEndIndex: (x: boolean) => void;
+  groupLabelList: GroupLabel[];
+  setGroupLabelList: (x: GroupLabel[]) => void;
   downloadPng: () => void;
   downloadConfig: () => void;
 };
@@ -115,7 +118,11 @@ export default function SettingContainer(props: MyProps) {
           />
         </Col>
         <Col span={5}>
-          <GroupLabelList isActive={props.isFirstCol} />
+          <GroupLabelList
+            isActive={props.isFirstCol}
+            groupLabelList={props.groupLabelList}
+            setGroupLabelList={props.setGroupLabelList}
+          />
         </Col>
       </Grid>
       <Group direction="column" position="center">

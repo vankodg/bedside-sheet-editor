@@ -3,12 +3,13 @@ import { SVGProps } from 'react';
 type MyProps = {
   label?: string;
   isLabelCentered?: boolean;
+  transform?: string;
 } & SVGProps<SVGRectElement>;
 
 export default function Cell(props: MyProps) {
-  var { label, isLabelCentered, ...svgProps } = props;
+  var { label, isLabelCentered, transform, ...svgProps } = props;
   return (
-    <>
+    <g transform={transform ? transform : ''}>
       <rect style={{ fill: 'white', stroke: 'black' }} {...svgProps} />
       {props.label && !props.isLabelCentered && (
         <text
@@ -36,6 +37,6 @@ export default function Cell(props: MyProps) {
           {props.label}
         </text>
       )}
-    </>
+    </g>
   );
 }

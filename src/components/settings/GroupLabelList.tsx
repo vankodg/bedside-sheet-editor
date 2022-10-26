@@ -8,27 +8,17 @@ import {
   ActionIcon,
   Button,
 } from '@mantine/core';
-import { IconTrash } from '@tabler/icons';
-import { IconPlus } from '@tabler/icons';
-import { useLocalStorage } from '../../utils/myHooks';
+import { IconTrash, IconPlus } from '@tabler/icons';
+import { GroupLabel } from '../../utils/types';
 
 type GroupLabelListProps = {
   isActive: boolean;
-};
-type GroupLabel = {
-  label: string;
-  startRow: number;
-  endRow: number;
+  groupLabelList: GroupLabel[];
+  setGroupLabelList: (x: GroupLabel[]) => void;
 };
 
 export default function GroupLabelList(props: GroupLabelListProps) {
-  const [groupLabelList, setGroupLabelList] = useLocalStorage<GroupLabel[]>(
-    'groupLabelList',
-    [
-      { label: '', startRow: 1, endRow: 3 },
-      { label: '', startRow: 4, endRow: 6 },
-    ],
-  );
+  var { isActive, groupLabelList, setGroupLabelList } = props;
   return (
     <Group direction="column" style={{ alignItems: 'normal' }}>
       <Text>Group labels of the first column</Text>
@@ -43,7 +33,7 @@ export default function GroupLabelList(props: GroupLabelListProps) {
                 newArray[rowIdx].label = event.currentTarget.value;
                 setGroupLabelList(newArray);
               }}
-              disabled={!props.isActive}
+              disabled={!isActive}
             />
           </Col>
           <Col span={2}>
@@ -55,7 +45,7 @@ export default function GroupLabelList(props: GroupLabelListProps) {
                 setGroupLabelList(newArray);
               }}
               hideControls
-              disabled={!props.isActive}
+              disabled={!isActive}
             />
           </Col>
           <Col span={2}>
@@ -67,7 +57,7 @@ export default function GroupLabelList(props: GroupLabelListProps) {
                 setGroupLabelList(newArray);
               }}
               hideControls
-              disabled={!props.isActive}
+              disabled={!isActive}
             />
           </Col>
           <Col span={1}>
@@ -77,6 +67,7 @@ export default function GroupLabelList(props: GroupLabelListProps) {
                 newArray.splice(rowIdx, 1);
                 setGroupLabelList(newArray);
               }}
+              disabled={!isActive}
             >
               <IconTrash />
             </ActionIcon>
@@ -92,6 +83,7 @@ export default function GroupLabelList(props: GroupLabelListProps) {
           ];
           setGroupLabelList(newArray);
         }}
+        disabled={!isActive}
       >
         Add new group label
       </Button>

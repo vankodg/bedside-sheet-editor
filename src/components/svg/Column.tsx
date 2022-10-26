@@ -12,19 +12,17 @@ type MyProps = {
 export default function Column(props: MyProps) {
   let cellHeight = props.height / props.numOfCells;
   return (
-    <svg x={props.x} y={props.y} width={props.width} height={props.height}>
-      <g>
-        {[...Array(props.numOfCells)].map((_, rowIdx) => (
-          <Cell
-            key={rowIdx}
-            x={0}
-            y={rowIdx * cellHeight}
-            width={props.width}
-            height={cellHeight}
-            label={props.labelList ? props.labelList[rowIdx] : undefined}
-          />
-        ))}
-      </g>
-    </svg>
+    <g transform={'translate(' + props.x + ' ' + props.y + ')'}>
+      {[...Array(props.numOfCells)].map((_, rowIdx) => (
+        <Cell
+          key={rowIdx}
+          x={0}
+          y={rowIdx * cellHeight}
+          width={props.width}
+          height={cellHeight}
+          label={props.labelList ? props.labelList[rowIdx] : undefined}
+        />
+      ))}
+    </g>
   );
 }
