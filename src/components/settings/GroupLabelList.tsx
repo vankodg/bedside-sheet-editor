@@ -1,4 +1,15 @@
-import { Group, TextInput, Text, NumberInput, Grid, Col } from '@mantine/core';
+import {
+  Group,
+  TextInput,
+  Text,
+  NumberInput,
+  Grid,
+  Col,
+  ActionIcon,
+  Button,
+} from '@mantine/core';
+import { IconTrash } from '@tabler/icons';
+import { IconPlus } from '@tabler/icons';
 import { useLocalStorage } from '../../utils/myHooks';
 
 type GroupLabelListProps = {
@@ -11,10 +22,6 @@ type GroupLabel = {
 };
 
 export default function GroupLabelList(props: GroupLabelListProps) {
-  const [numOfGroupLabels, setNumOfGroupLabels] = useLocalStorage(
-    'numOfGroupLabels',
-    2,
-  );
   const [groupLabelList, setGroupLabelList] = useLocalStorage<GroupLabel[]>(
     'groupLabelList',
     [
@@ -25,7 +32,7 @@ export default function GroupLabelList(props: GroupLabelListProps) {
   return (
     <Group direction="column" style={{ alignItems: 'normal' }}>
       <Text>Group labels of the first column</Text>
-      {[...Array(numOfGroupLabels)].map((_, rowIdx) => (
+      {[...Array(groupLabelList.length)].map((_, rowIdx) => (
         <Grid key={rowIdx} grow>
           <Col span={6}>
             <TextInput
@@ -63,8 +70,31 @@ export default function GroupLabelList(props: GroupLabelListProps) {
               disabled={!props.isActive}
             />
           </Col>
+          <Col span={1}>
+            <ActionIcon
+              onClick={() => {
+                let newArray: GroupLabel[] = [...groupLabelList];
+                newArray.splice(rowIdx, 1);
+                setGroupLabelList(newArray);
+              }}
+            >
+              <IconTrash />
+            </ActionIcon>
+          </Col>
         </Grid>
       ))}
+      <Button
+        leftIcon={<IconPlus size={26} />}
+        onClick={() => {
+          let newArray: GroupLabel[] = [
+            ...groupLabelList,
+            { label: '', startRow: 0, endRow: 0 },
+          ];
+          setGroupLabelList(newArray);
+        }}
+      >
+        Add new group label
+      </Button>
     </Group>
   );
 }
