@@ -1,4 +1,5 @@
 import React from 'react';
+import { firstColWidth, rowHeight, rowWidth } from '../utils/constants';
 import { GroupLabel } from '../utils/types';
 import Cell from './svg/Cell';
 import Column from './svg/Column';
@@ -15,11 +16,10 @@ type MyProps = {
 };
 
 export default function SvgContainer(props: MyProps) {
-  let rowHeight = 32;
-  let rowWidth = 1800;
-  let firstColWidth = 200;
-  let svgWidth = rowWidth + (props.isFirstCol ? firstColWidth + rowHeight : 0);
-  let svgHeight = ((props.isFirstRow ? 1 : 0) + props.numOfRows) * rowHeight;
+  let svgWidth =
+    rowWidth + (props.isFirstCol ? firstColWidth + rowHeight : 0) + 1;
+  let svgHeight =
+    ((props.isFirstRow ? 1 : 0) + props.numOfRows) * rowHeight + 1;
   return (
     <svg
       id={'svg-bedsheet'}

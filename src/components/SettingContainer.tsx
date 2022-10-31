@@ -38,7 +38,7 @@ export default function SettingContainer(props: MyProps) {
         align="flex-start"
         grow
         style={{
-          height: '50vh',
+          height: '67vh',
           width: 'calc(100% - 180px)',
           overflowY: 'scroll',
           margin: 0,

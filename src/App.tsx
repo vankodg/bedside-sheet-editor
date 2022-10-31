@@ -2,6 +2,7 @@ import { Container } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
 import SettingContainer from './components/SettingContainer';
 import SvgContainer from './components/SvgContainer';
+import { firstColWidth, rowHeight, rowWidth } from './utils/constants';
 import { useLocalStorage } from './utils/myHooks';
 import { GroupLabel } from './utils/types';
 
@@ -45,10 +46,24 @@ export default function App() {
   const downloadConfig = () => {
     let output = 'DATA_AREA_ROWS = ' + numOfRows + '\n';
     output += 'DATA_AREA_COLUMNS = ' + 24 + '\n';
-    output += 'ROW_HEIGHT = ' + 16 + '\n';
-    output += 'COLUMN_WIDTH = ' + 900 / 24 + '\n';
-    output += 'INPUT_SECTION_OFFSET_X = ' + (isFirstCol ? 60 : 0) + '\n';
-    output += 'INPUT_SECTION_OFFSET_Y = ' + (isFirstRow ? 16 : 0) + '\n';
+    output += 'ROW_HEIGHT = ' + rowHeight + '\n';
+    output += 'COLUMN_WIDTH = ' + rowWidth / 24 + '\n';
+    output +=
+      'INPUT_SECTION_OFFSET_X = ' +
+      (isFirstCol ? firstColWidth + rowHeight : 0) +
+      '\n';
+    output += 'INPUT_SECTION_OFFSET_Y = ' + (isFirstRow ? rowHeight : 0) + '\n';
+    let pythonList = [...Array(numOfRows)].map(
+      (_, rowIdx) =>
+        "'" +
+        (isFirstCol
+          ? firstColLabelList[rowIdx]
+            ? firstColLabelList[rowIdx]
+            : ''
+          : '') +
+        "'",
+    );
+    output += 'LABEL_LIST = ' + '[' + pythonList + ']' + '\n';
     const blob = new Blob([output], { type: 'text/plain;charset=utf-8' }); // Step 3
     const url = URL.createObjectURL(blob); // Step 4
     setConfigDownloadUrl(url.toString());
