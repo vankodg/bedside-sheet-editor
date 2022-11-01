@@ -63,7 +63,7 @@ export default function App() {
           : '') +
         "'",
     );
-    output += 'LABEL_LIST = ' + '[' + pythonList + ']' + '\n';
+    output += 'LABEL_LIST = [' + pythonList + ']\n';
     const blob = new Blob([output], { type: 'text/plain;charset=utf-8' }); // Step 3
     const url = URL.createObjectURL(blob); // Step 4
     setConfigDownloadUrl(url.toString());
