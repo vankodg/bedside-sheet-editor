@@ -15,8 +15,8 @@ export default function Cell(props: MyProps) {
         <text
           x={props.x}
           y={props.y}
-          dx={Number(props.width) * 0.1}
-          dy={Number(props.height) * 0.9}
+          dx={Number(props.width) * 0.05}
+          dy={Number(props.height) * 0.85}
           style={{
             font: 'normal ' + Number(props.height) * 0.8 + 'px sans-serif',
           }}

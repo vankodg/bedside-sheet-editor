@@ -53,6 +53,14 @@ export default function App() {
       (isFirstCol ? firstColWidth + rowHeight : 0) +
       '\n';
     output += 'INPUT_SECTION_OFFSET_Y = ' + (isFirstRow ? rowHeight : 0) + '\n';
+    output +=
+      'ORIGINAL_WIDTH = ' +
+      (rowWidth + (isFirstCol ? firstColWidth + rowHeight : 0) + 1) +
+      '\n';
+    output +=
+      'ORIGINAL_HEIGHT = ' +
+      (((isFirstRow ? 1 : 0) + numOfRows) * rowHeight + 1) +
+      '\n';
     let pythonList = [...Array(numOfRows)].map(
       (_, rowIdx) =>
         "'" +

@@ -49,7 +49,7 @@ export default function SettingContainer(props: MyProps) {
           <NumberInput
             label="Number of rows"
             id={'numOfRows'}
-            min={0}
+            min={1}
             max={100} /* just to be safe */
             type={'number'}
             value={props.numOfRows}
