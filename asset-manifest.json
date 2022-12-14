@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/bedside-sheet-editor/static/js/main.19c90c9e.chunk.js",
+    "main.js.map": "/bedside-sheet-editor/static/js/main.19c90c9e.chunk.js.map",
+    "runtime-main.js": "/bedside-sheet-editor/static/js/runtime-main.d6d5c0b1.js",
+    "runtime-main.js.map": "/bedside-sheet-editor/static/js/runtime-main.d6d5c0b1.js.map",
+    "static/js/2.9b267c39.chunk.js": "/bedside-sheet-editor/static/js/2.9b267c39.chunk.js",
+    "static/js/2.9b267c39.chunk.js.map": "/bedside-sheet-editor/static/js/2.9b267c39.chunk.js.map",
+    "index.html": "/bedside-sheet-editor/index.html",
+    "static/js/2.9b267c39.chunk.js.LICENSE.txt": "/bedside-sheet-editor/static/js/2.9b267c39.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6d5c0b1.js",
+    "static/js/2.9b267c39.chunk.js",
+    "static/js/main.19c90c9e.chunk.js"
+  ]
+}
